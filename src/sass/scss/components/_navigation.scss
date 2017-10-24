@@ -2,154 +2,135 @@
     #NAVIGATION
 \*------------------------------------*/
 
-/**
- * Navigation container
- * 1) Collapse height on small screens. Menu trigger button
- *    activates nav
- */
-.pl-c-nav {
-    @media all and (max-width: $pl-bp-med) {
-        position: absolute;
-        top: $offset-top;
-        width: 100%;
-        overflow: hidden;
-        max-height: 0; /* 1 */
-        transition: max-height $pl-animate-quick ease-out;
+aside {
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #008299;
+    color: #FFF;
+    z-index: 2;
+    overflow-y: auto;
 
-        /**
-        * Active navigaiton
-        */
-        &.pl-is-active {
-            max-height: 50rem;  /* 1 */
+    h1 {
+      padding: 0 20px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+    ol {
+        list-style: none;
+        padding-left: 15px;
+
+        &.pl-c-nav__sublist {
+            padding-top: 5px;
         }
     }
 
-    @media all and (min-width: $pl-bp-med) {
-        display: flex;
-    }
-}
-
-/**
- * Nav list
- * 1) appears as an <ol>
- * 2) display as a horizontal list on larger screens
- */
-.pl-c-nav__list {
-    z-index: 1;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    @media all and (min-width: $pl-bp-med) {
-        display: flex; /* 2 */
-    }
-}
-
-/**
- * Nav list item
-*/
-.pl-c-nav__item {
-    cursor: pointer;
-    position: relative;
-}
-
-/**
- * Nav link
- */
-.pl-c-nav__link {
-    display: flex;
-    align-items: center;
-    @include linkStyle();
-}
-
-/**
- * Nav sublink
- * 1) Visually differentiate sub-item links from
- *    the other links. Creates better hierarchy.
- */
-.pl-c-nav__link--sublink {
-    text-transform: none;
-    padding-left: 1rem;
-}
-
-/**
-* Nav link
-*/
-.pl-c-nav__link--dropdown {
-
-    /**
-    * Dropdown caret after accordion handle
-    */
-    &:after {
-        content: '▼';
-        color: $pl-color-trans-white-25;
-        display: inline-block;
-        font-size: 7px;
+    .pl-c-typeahead__wrapper {
         position: relative;
-        top: 1px;
-        right: -2px;
-        transition: all $pl-animate-quick ease-out;
-    }
 
-    &:hover, &:focus {
-        &:after {
-            color: $pl-color-gray-50;
+        label {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 15px;
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+          color: #FFF;
+          margin: auto;
+        }
+
+        .pl-c-typeahead {
+          width: 100%;
+          padding: .5rem .75rem;
+          line-height: 1.25;
+          outline-offset: -2px;
+          -webkit-appearance: none;
+          height: 2.3em;
+          padding-left: 48px;
+          font-size: 18px;
+          color: inherit;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid;
+          border-radius: 0;
+          box-shadow: none;
+          transition-duration: 0s;
+          opacity: 0.5;
+          transition: ease 125ms;
         }
     }
 
-    /**
-    * Active dropdown
-    */
-    &.pl-is-active {
-        color: $pl-color-white;
-        background: $pl-color-gray-87;
-
-        /**
-        * Caret rotation and positioning in active dropdown
-        */
-        &:after {
-            color: $pl-color-gray-50;
-            -webkit-transform: rotate(180deg);
-            -ms-transform: rotate(180deg);
-            transform: rotate(180deg);
+    .pl-c-nav {
+        margin-top: 20px;
+        
+        .pl-c-nav__notfound {
+            display: none;
         }
+        .pl-c-nav__list > .pl-c-nav__item:last-child,
+        .pl-c-nav__sublist > .pl-c-nav__item:last-child,
+        .pl-c-nav__subsublist > .pl-c-nav__item:first-child {
+          display: none;
+        }
+        .pl-c-nav__link::after {
+          display: none;
+        }
+
+        .pl-c-nav, .pl-c-nav__list {
+          flex-direction: column;
+          padding: 0 10px
+        }
+
+        .pl-c-nav__list .pl-c-nav__item {
+
+             .pl-c-nav__sublist, .pl-c-nav__subsublist {
+                max-height: 50rem;
+                position: static;
+                background: transparent;
+                margin-bottom: 10px;
+            }
+            .pl-c-nav__link {
+              background: transparent;
+              color: inherit;
+              font-size: 20px;
+              font-weight: 600;
+              padding: 2px 0;
+            }
+            .pl-c-nav__sublist .pl-c-nav__item .pl-c-nav__link {
+              font-weight: 600;
+              font-size: 14px;
+            }
+            .pl-c-nav__subsublist .pl-c-nav__item .pl-c-nav__link {
+              font-weight: 200;
+              font-size: 12px;
+            }
+        }
+
+    }
+
+}
+
+.main-wrapper {
+    width: 85%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+
+    .pl-c-header {
+      position: absolute;
+    }
+    .pl-c-viewport {
+      position: absolute;
+    }
+    .pl-c-viewport__iframe {
+      width: 100% !important;
+    }
+    .pl-c-viewport__iframe-wrapper {
+        max-width: 100%;
     }
 }
-
-/**
-* Nav sublist
-* 1) On larger screens, display as dropdowns that
-*    hang over the header
-*/
-.pl-c-nav__sublist {
-    @include listReset();
-
-    @media all and (min-width: $pl-bp-med) {
-        position: absolute;
-        top: 100%; /* 1 */
-        left: 0;
-        min-width: 10rem;
-        overflow: hidden;
-        background: $pl-color-black;
-        border-bottom-left-radius: $pl-border-radius-med;
-        border-bottom-right-radius: $pl-border-radius-med;
-    }
-}
-
-/**
-* Dropdown sublist
-*/
-.pl-c-nav__sublist--dropdown, .pl-c-nav__subsublist--dropdown {
-    @include listReset();
-    @include accordionPanel();
-}
-
-/**
-* Sub-navigation
-* 1) Third-level links are stylistically different
-* than first and second nav links.
-*/
-.pl-c-nav__subsublist {
-    @include listReset();
-}
-

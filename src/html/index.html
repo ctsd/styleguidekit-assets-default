@@ -6,16 +6,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
 </head>
 
 <body class="pl-c-body">
 
-	@@include('./partials/header.html') 
-	
-	@@include('./partials/iframe.html') 
-	
-	@@include('./partials/modal.html')
+	@@include('./partials/navigation.html') 
 
+	<div class="main-wrapper">
+		@@include('./partials/header.html')
+
+		@@include('./partials/iframe.html') 
+	
+		@@include('./partials/modal.html')
+	</div>
+	
 	<!-- mustache templates -->
 	<script type="text/mustache" class="pl-js-pattern-nav-template">
 		@@include('./partials/pattern-nav.html')
@@ -45,7 +50,6 @@
 	<script src="styleguide/bower_components/prism.min.js"></script>
 	<script src="styleguide/bower_components/jwerty.min.js"></script>
 	<script src="styleguide/bower_components/classList.min.js"></script>
-	<script src="styleguide/bower_components/typeahead.bundle.min.js"></script>
 	<script src="styleguide/bower_components/EventEmitter.min.js"></script>
 	<script src="styleguide/bower_components/script.min.js"></script>
 

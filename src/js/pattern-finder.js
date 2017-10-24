@@ -26,25 +26,25 @@ var patternFinder = {
 			}
 		}
 
-		// instantiate the bloodhound suggestion engine
-		var patterns = new Bloodhound({
-			datumTokenizer: function (d) {
-				return Bloodhound.tokenizers.nonword(d.patternPartial);
-			},
-			queryTokenizer: Bloodhound.tokenizers.nonword,
-			limit: 10,
-			local: this.data
-		});
+		// // instantiate the bloodhound suggestion engine
+		// var patterns = new Bloodhound({
+		// 	datumTokenizer: function (d) {
+		// 		return Bloodhound.tokenizers.nonword(d.patternPartial);
+		// 	},
+		// 	queryTokenizer: Bloodhound.tokenizers.nonword,
+		// 	limit: 10,
+		// 	local: this.data
+		// });
 
-		// initialize the bloodhound suggestion engine
-		patterns.initialize();
+		// // initialize the bloodhound suggestion engine
+		// patterns.initialize();
 
-		$('.pl-js-typeahead').typeahead({
-			highlight: true
-		}, {
-			displayKey: 'patternPartial',
-			source: patterns.ttAdapter()
-		}).on('typeahead:selected', patternFinder.onSelected).on('typeahead:autocompleted', patternFinder.onAutocompleted);
+		// $('.pl-js-typeahead').typeahead({
+		// 	highlight: true
+		// }, {
+		// 	displayKey: 'patternPartial',
+		// 	source: patterns.ttAdapter()
+		// }).on('typeahead:selected', patternFinder.onSelected).on('typeahead:autocompleted', patternFinder.onAutocompleted);
 
 	},
 

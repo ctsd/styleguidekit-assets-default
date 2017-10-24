@@ -74,6 +74,8 @@
   padding: 0;
   background: #ddd;
   -webkit-text-size-adjust: 100%;
+  font-family: system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /*------------------------------------*\
@@ -187,218 +189,127 @@
 /*------------------------------------*\
     #NAVIGATION
 \*------------------------------------*/
-/**
- * Navigation container
- * 1) Collapse height on small screens. Menu trigger button
- *    activates nav
- */
-@media all and (max-width: 42em) {
-  .pl-c-nav {
-    position: absolute;
-    top: 2rem;
-    width: 100%;
-    overflow: hidden;
-    max-height: 0;
-    /* 1 */
-    -webkit-transition: max-height 0.1s ease-out;
-            transition: max-height 0.1s ease-out;
-    /**
-    * Active navigaiton
-    */
-  }
-  .pl-c-nav.pl-is-active {
-    max-height: 50rem;
-    /* 1 */
-  }
+aside {
+  width: 15%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #008299;
+  color: #FFF;
+  z-index: 2;
+  overflow-y: auto;
 }
-@media all and (min-width: 42em) {
-  .pl-c-nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
+aside h1 {
+  padding: 0 20px;
 }
-
-/**
- * Nav list
- * 1) appears as an <ol>
- * 2) display as a horizontal list on larger screens
- */
-.pl-c-nav__list {
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-@media all and (min-width: 42em) {
-  .pl-c-nav__list {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    /* 2 */
-  }
-}
-
-/**
- * Nav list item
-*/
-.pl-c-nav__item {
-  cursor: pointer;
-  position: relative;
-}
-
-/**
- * Nav link
- */
-.pl-c-nav__link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 0.7rem;
-  background: #000;
-  color: #808080;
+aside a {
   text-decoration: none;
-  line-height: 1;
-  padding: 0.7rem 0.5rem;
-  border: 0;
-  text-align: left;
-  -webkit-transition: background 0.1s ease-out, color 0.1s ease-out;
-          transition: background 0.1s ease-out, color 0.1s ease-out;
-  /**
-   * Header link styles inside light theme
-   */
-  /**
-   * Header link styles inside light theme
-   */
 }
-.pl-c-nav__link:hover {
-  color: #fff;
-  background: #222;
+aside ol {
+  list-style: none;
+  padding-left: 15px;
 }
-.pl-c-nav__link:focus, .pl-c-nav__link.active {
-  color: #fff;
-  background: #222;
-  outline: 1px dotted #808080;
-  outline-offset: -1px;
+aside ol.pl-c-nav__sublist {
+  padding-top: 5px;
 }
-.pl-c-body--theme-light .pl-c-nav__link {
-  background: #fff;
-  color: #4d4c4c;
-}
-.pl-c-body--theme-comfy .pl-c-nav__link {
-  padding: 1.2rem 1rem;
-}
-
-/**
- * Nav sublink
- * 1) Visually differentiate sub-item links from
- *    the other links. Creates better hierarchy.
- */
-.pl-c-nav__link--sublink {
-  text-transform: none;
-  padding-left: 1rem;
-}
-
-/**
-* Nav link
-*/
-.pl-c-nav__link--dropdown {
-  /**
-  * Dropdown caret after accordion handle
-  */
-  /**
-  * Active dropdown
-  */
-}
-.pl-c-nav__link--dropdown:after {
-  content: 'Γû╝';
-  color: rgba(255, 255, 255, 0.25);
-  display: inline-block;
-  font-size: 7px;
+aside .pl-c-typeahead__wrapper {
   position: relative;
-  top: 1px;
-  right: -2px;
-  -webkit-transition: all 0.1s ease-out;
-          transition: all 0.1s ease-out;
 }
-.pl-c-nav__link--dropdown:hover:after, .pl-c-nav__link--dropdown:focus:after {
-  color: #808080;
+aside .pl-c-typeahead__wrapper label {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #FFF;
+  margin: auto;
 }
-.pl-c-nav__link--dropdown.pl-is-active {
-  color: #fff;
-  background: #222;
-  /**
-  * Caret rotation and positioning in active dropdown
-  */
+aside .pl-c-typeahead__wrapper .pl-c-typeahead {
+  width: 100%;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+  outline-offset: -2px;
+  -webkit-appearance: none;
+  height: 2.3em;
+  padding-left: 48px;
+  font-size: 18px;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+  opacity: 0.5;
+  -webkit-transition: ease 125ms;
+          transition: ease 125ms;
 }
-.pl-c-nav__link--dropdown.pl-is-active:after {
-  color: #808080;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
+aside .pl-c-nav {
+  margin-top: 20px;
+}
+aside .pl-c-nav .pl-c-nav__notfound {
+  display: none;
+}
+aside .pl-c-nav .pl-c-nav__list > .pl-c-nav__item:last-child,
+aside .pl-c-nav .pl-c-nav__sublist > .pl-c-nav__item:last-child,
+aside .pl-c-nav .pl-c-nav__subsublist > .pl-c-nav__item:first-child {
+  display: none;
+}
+aside .pl-c-nav .pl-c-nav__link::after {
+  display: none;
+}
+aside .pl-c-nav .pl-c-nav, aside .pl-c-nav .pl-c-nav__list {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0 10px;
+}
+aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__sublist, aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist {
+  max-height: 50rem;
+  position: static;
+  background: transparent;
+  margin-bottom: 10px;
+}
+aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__link {
+  background: transparent;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 2px 0;
+}
+aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__sublist .pl-c-nav__item .pl-c-nav__link {
+  font-weight: 600;
+  font-size: 14px;
+}
+aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav__item .pl-c-nav__link {
+  font-weight: 200;
+  font-size: 12px;
 }
 
-/**
-* Nav sublist
-* 1) On larger screens, display as dropdowns that
-*    hang over the header
-*/
-.pl-c-nav__sublist {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.main-wrapper {
+  width: 85%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
 }
-@media all and (min-width: 42em) {
-  .pl-c-nav__sublist {
-    position: absolute;
-    top: 100%;
-    /* 1 */
-    left: 0;
-    min-width: 10rem;
-    overflow: hidden;
-    background: #000;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-  }
+.main-wrapper .pl-c-header {
+  position: absolute;
 }
-
-/**
-* Dropdown sublist
-*/
-.pl-c-nav__sublist--dropdown, .pl-c-nav__subsublist--dropdown {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  max-height: 0;
-  -webkit-transition: max-height 0.1s ease-out;
-          transition: max-height 0.1s ease-out;
-  /**
-  * Active is when accordion panel is open
-  */
+.main-wrapper .pl-c-viewport {
+  position: absolute;
 }
-.pl-c-nav__sublist--dropdown.pl-is-active, .pl-c-nav__subsublist--dropdown.pl-is-active {
-  max-height: none;
-  overflow: auto;
+.main-wrapper .pl-c-viewport__iframe {
+  width: 100% !important;
 }
-@media all and (min-width: 42em) {
-  .pl-c-nav__sublist--dropdown.pl-is-active, .pl-c-nav__subsublist--dropdown.pl-is-active {
-    max-height: 50rem;
-  }
-}
-
-/**
-* Sub-navigation
-* 1) Third-level links are stylistically different
-* than first and second nav links.
-*/
-.pl-c-nav__subsublist {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.main-wrapper .pl-c-viewport__iframe-wrapper {
+  max-width: 100%;
 }
 
 /*------------------------------------*\
@@ -1246,7 +1157,7 @@
  * Breadcrumb Item
  */
 .pl-c-breadcrumb__item:after {
-  content: 'Γû╢';
+  content: '▶';
   opacity: 0.4;
   font-size: 6px;
   display: inline-block;
@@ -1589,7 +1500,7 @@
 }
 
 /*------------------------------------*\
-┬á┬á┬á #ANNOTATIONS INSIDE MODAL
+    #ANNOTATIONS INSIDE MODAL
 \*------------------------------------*/
 /**
  * Annotations area

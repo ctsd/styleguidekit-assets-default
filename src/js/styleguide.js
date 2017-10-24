@@ -52,23 +52,40 @@
 		$('.pl-js-nav-target').toggleClass('pl-is-active');
 	});
 
-	// Accordion dropdown
-	$('.pl-js-acc-handle').on("click", function (e) {
-		e.preventDefault();
+	// Menu assigning actions to titles
+	$(".pl-c-nav__list > .pl-c-nav__item:last-child, .pl-c-nav__sublist > .pl-c-nav__item:last-child, .pl-c-nav__subsublist > .pl-c-nav__item:first-child").addClass('pl-c-nav__item__hidden');
+	$('.pl-c-nav__list > .pl-c-nav__item > a.pl-js-acc-handle').each(function() {
+		$(this).attr('href', $(this).parent().find("> ol > .pl-c-nav__item:last-child a").attr('href'));
+		$(this).attr('data-patternpartial', $(this).parent().find("> ol > .pl-c-nav__item:last-child a").attr('data-patternpartial'));
+	});
+	$('.pl-c-nav__sublist .pl-js-acc-handle').each(function() {
+		$(this).attr('href', $(this).parent().find("> ol > .pl-c-nav__item:first-child a").attr('href'));
+		$(this).attr('data-patternpartial', $(this).parent().find("> ol > .pl-c-nav__item:first-child a").attr('data-patternpartial'));
+	});
 
-		var $this = $(this),
-			$panel = $this.next('.pl-js-acc-panel'),
-			subnav = $this.parent().parent().hasClass('pl-js-acc-panel');
+	// Search input action
+	jQuery.expr[':'].iContains = function(a, i, m) {
+	  return jQuery(a).text().toUpperCase()
+	      .indexOf(m[3].toUpperCase()) >= 0;
+	};
+	$('aside input#typeahead').bind('keyup', function() {
+		var query = $(this).val();
 
-		//Close other panels if link isn't a subnavigation item
-		if (!subnav) {
-			$('.pl-js-acc-handle').not($this).removeClass('pl-is-active');
-			$('.pl-js-acc-panel').not($panel).removeClass('pl-is-active');
+		if (query.length) {
+			var elementsCount = $('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden) > a:iContains(' + query + ')').length;
+			
+			$('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden)').hide();
+			$('.pl-c-nav .pl-c-nav__notfound').hide();
+			if (elementsCount) {
+				$('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden) > a:iContains(' + query + ')').parent().show();
+				$('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden) > a:iContains(' + query + ')').closest('.pl-c-nav__subsublist').parent().show();
+				$('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden) > a:iContains(' + query + ')').closest('.pl-c-nav__sublist').parent().show();
+			}
+			else
+				$('.pl-c-nav .pl-c-nav__notfound').show();
 		}
-
-		//Activate selected panel
-		$this.toggleClass('pl-is-active');
-		$panel.toggleClass('pl-is-active');
+		else
+			$('.pl-c-nav .pl-c-nav__item:not(.pl-c-nav__item__hidden)').show();
 	});
 
 	//Size View Events

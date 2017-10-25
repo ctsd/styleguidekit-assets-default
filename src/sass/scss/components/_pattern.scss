@@ -11,9 +11,22 @@
 * 3) Prevents floated patterns from floating wraps
 */
 .pl-c-pattern {
-    margin-bottom: $pl-doublespace;
+    margin-bottom: 10px;
     position: relative; /* 2 */
     clear: both; /* 3 */
+    background: #FFF;
+    padding: 20px;
+
+    .pl-c-pattern__header {
+        h3 {
+            font-size: 30px !important;
+            margin-bottom: 10px !important;
+        }
+    }
+    &.pl-c-pattern-single {
+        min-height: calc(100vh - 40px);
+        margin-bottom: 0;
+    }
 }
 
 
@@ -107,6 +120,53 @@
     }
 }
 
+.pl-c-pattern__sampleWrapper {
+    background: #f7f7f7;
+    padding: 5px;
+
+    .pl-js-pattern-example {
+        background: #FFF;
+        padding: 30px 0;
+    }
+    .pl-c-pattern__codeSection {
+        margin-top: 10px;
+
+        a {
+            position: relative;
+            text-decoration: none;
+            color: #888888;
+            padding-left: 10px;
+        }
+        a::before {
+            content: "\f0da";
+            color: #888888;
+            font-family: "FontAwesome", sans-serif;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            font-size: 15px;
+            line-height: 15px;
+            height: 17px;
+            margin: auto;
+        }
+        div.content {
+            display: none;
+
+            pre {
+                padding: 20px 5px;
+            }
+        }
+        &.is-collapsed {
+            div.content {
+                display: block;
+            }
+            a::before {
+                content: "\f0d7";
+            }
+        }
+    }
+}
 
 /**
 * Pattern Extra

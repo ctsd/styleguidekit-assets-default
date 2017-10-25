@@ -1287,6 +1287,20 @@ $('.pl-js-typeahead').blur(function () {
  *
  */
 
+
+(function (w) {
+
+	$('.pl-c-pattern .pl-c-pattern__codeSection > a.title').click(function(e) {
+		e.preventDefault();
+		$(this).parent().toggleClass('is-collapsed');
+	});
+
+	if ($('.pl-c-pattern').length == 0) {
+		$('html.pl body').wrapInner("<div class='pl-c-pattern pl-c-pattern-single'></div>");
+	}
+
+})(this);	
+
 // alert the iframe parent that the pattern has loaded assuming this view was loaded in an iframe
 if (self != top) {
 

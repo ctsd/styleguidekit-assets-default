@@ -61,6 +61,61 @@
   box-sizing: border-box;
 }
 
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #000;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+}
+
+kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #ffffff;
+  background-color: #333333;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+kbd kbd {
+  padding: 0;
+  font-size: 100%;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333333;
+  background-color: #f5f5f5;
+  border-left: 1px solid #cccccc;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
 /*------------------------------------*\
     #PATTERN LAB BODY
 \*------------------------------------*/
@@ -107,6 +162,7 @@
   color: #808080;
   font-family: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
   font-size: 0.7rem;
+  display: none;
 }
 
 /**
@@ -304,6 +360,7 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
 }
 .main-wrapper .pl-c-viewport {
   position: absolute;
+  top: 0;
 }
 .main-wrapper .pl-c-viewport__iframe {
   width: 100% !important;
@@ -748,11 +805,21 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
 * 3) Prevents floated patterns from floating wraps
 */
 .pl-c-pattern {
-  margin-bottom: 2rem;
+  margin-bottom: 10px;
   position: relative;
   /* 2 */
   clear: both;
   /* 3 */
+  background: #FFF;
+  padding: 20px;
+}
+.pl-c-pattern .pl-c-pattern__header h3 {
+  font-size: 30px !important;
+  margin-bottom: 10px !important;
+}
+.pl-c-pattern.pl-c-pattern-single {
+  min-height: calc(100vh - 40px);
+  margin-bottom: 0;
 }
 
 /**
@@ -844,6 +911,49 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
   transform: rotate(180deg);
 }
 
+.pl-c-pattern__sampleWrapper {
+  background: #f7f7f7;
+  padding: 5px;
+}
+.pl-c-pattern__sampleWrapper .pl-js-pattern-example {
+  background: #FFF;
+  padding: 30px 0;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection {
+  margin-top: 10px;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection a {
+  position: relative;
+  text-decoration: none;
+  color: #888888;
+  padding-left: 10px;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection a::before {
+  content: "\f0da";
+  color: #888888;
+  font-family: "FontAwesome", sans-serif;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 15px;
+  line-height: 15px;
+  height: 17px;
+  margin: auto;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection div.content {
+  display: none;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection div.content pre {
+  padding: 20px 5px;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection.is-collapsed div.content {
+  display: block;
+}
+.pl-c-pattern__sampleWrapper .pl-c-pattern__codeSection.is-collapsed a::before {
+  content: "\f0d7";
+}
+
 /**
 * Pattern Extra
 * 1) This is the info panel that contains extra pattern info
@@ -876,11 +986,25 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
 * 2) The category contains a title and optional description
 */
 .pl-c-category {
-  margin-top: 6rem;
+  margin-top: 20px;
   font: "HelveticaNeue", "Helvetica", "Arial", sans-serif !important;
+  background: #b7f1db;
+  padding: 40px 0;
+  text-align: center;
+}
+.pl-c-category h2 {
+  font-size: 40px !important;
+  line-height: 40px;
+}
+.pl-c-category .pl-c-text-passage {
+  margin: auto;
+  margin-top: 20px;
+}
+.pl-c-category .pl-c-text-passage p {
+  margin: auto;
 }
 .pl-c-category:first-of-type {
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 /**

@@ -9,11 +9,28 @@
 * 2) The category contains a title and optional description
 */
 .pl-c-category {
-    margin-top: 6rem;
+    margin-top: 20px;
     font: $pl-font !important;
 
+    background: #b7f1db;
+    padding: 40px 0;
+    text-align: center;
+
+    h2 {
+        font-size: 40px !important;
+        line-height: 40px;
+    }
+    .pl-c-text-passage {
+        margin: auto;
+        margin-top: 20px;
+
+        p {
+            margin: auto;
+        }
+    }
+
     &:first-of-type {
-        margin-top: 2rem;
+        margin-top: 0;
     }
 }
 

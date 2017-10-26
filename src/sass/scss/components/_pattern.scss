@@ -189,3 +189,23 @@
         max-height: 150rem;
     }
 }
+
+@media all and (max-width: 1070px) {
+    .pl-c-pattern {
+        padding: 10px 0;
+        padding-bottom: 0;
+    }
+    .pl-c-pattern__sampleWrapper {
+        padding: 5px 0;
+        padding-bottom: 0;
+    }
+    .pl-c-pattern__header {
+        padding: 0.5rem 10px 0;
+    }
+    .pl-c-pattern__codeSection {
+        display: none;
+    }
+    .pl-js-pattern-example {
+        padding-bottom: 0;
+    }
+}

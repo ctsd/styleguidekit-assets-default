@@ -56,6 +56,9 @@
     .pl-c-pattern__codeSection .content {
         position: relative;
 
+        .pl-js-pattern-exampleUnstyled {
+            display: none;
+        }
         .pl-c-pattern__codeClipboard {
             position: absolute;
             right: 5px;

@@ -1359,7 +1359,7 @@ window.onload = function() {
 
 		$('.pl-c-pattern .pl-c-pattern__codeClipboard').click(function(e) {
 			e.preventDefault();
-			var content = $(this).parent().find('code').text();
+			var content = $(this).parent().find('.pl-js-pattern-exampleUnstyled').text();
 			copyTextToClipboard(content);
 
 			$(this).addClass('active').delay(2000).queue(function(next){

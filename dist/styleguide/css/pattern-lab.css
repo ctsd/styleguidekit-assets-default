@@ -841,6 +841,9 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
 .pl-c-pattern .pl-c-pattern__codeSection .content {
   position: relative;
 }
+.pl-c-pattern .pl-c-pattern__codeSection .content .pl-js-pattern-exampleUnstyled {
+  display: none;
+}
 .pl-c-pattern .pl-c-pattern__codeSection .content .pl-c-pattern__codeClipboard {
   position: absolute;
   right: 5px;

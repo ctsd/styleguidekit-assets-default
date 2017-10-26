@@ -1345,8 +1345,8 @@ window.onload = function() {
 			e.preventDefault();
 			var localUrl = window.location.href;
 			var url = localUrl;
-			if (url.indexOf('/', 7) !== -1)
-				url = url.substring(0, url.indexOf('/', 7));
+			if (url.indexOf('/', 8) !== -1)
+				url = url.substring(0, url.indexOf('/', 8));
 			url = url + "/?p=" + $(this).closest('.pl-c-pattern').attr('id');
 			copyTextToClipboard(url);
 

@@ -1287,19 +1287,90 @@ $('.pl-js-typeahead').blur(function () {
  *
  */
 
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
 
-(function (w) {
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
 
-	$('.pl-c-pattern .pl-c-pattern__codeSection > a.title').click(function(e) {
-		e.preventDefault();
-		$(this).parent().toggleClass('is-collapsed');
-	});
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
 
-	if ($('.pl-c-pattern').length == 0) {
-		$('html.pl body').wrapInner("<div class='pl-c-pattern pl-c-pattern-single'></div>");
-	}
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
 
-})(this);	
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
+}
+
+window.onload = function() {
+	(function($){
+
+		$('.pl-c-pattern .pl-c-pattern__codeSection > a.title').click(function(e) {
+			e.preventDefault();
+			$(this).parent().toggleClass('is-collapsed');
+		});
+
+		if ($('.pl-c-pattern').length == 0) {
+			$('html.pl body').wrapInner("<div class='pl-c-pattern pl-c-pattern-single'></div>");
+		}
+
+		$('.pl-c-pattern .pl-c-pattern-shareLink').click(function(e) {
+			e.preventDefault();
+			var localUrl = window.location.href;
+			var url = localUrl;
+			if (url.indexOf('/', 7) !== -1)
+				url = url.substring(0, url.indexOf('/', 7));
+			url = url + "/?p=" + $(this).closest('.pl-c-pattern').attr('id');
+			copyTextToClipboard(url);
+
+			$(this).addClass('active').delay(2000).queue(function(next){
+			    $(this).removeClass('active');
+			    next();
+			});
+			
+		});
+
+		$('.pl-c-pattern .pl-c-pattern__codeClipboard').click(function(e) {
+			e.preventDefault();
+			var content = $(this).parent().find('code').text();
+			copyTextToClipboard(content);
+
+			$(this).addClass('active').delay(2000).queue(function(next){
+			    $(this).removeClass('active');
+			    next();
+			});
+
+		});
+
+	})(jQuery); 
+};
 
 // alert the iframe parent that the pattern has loaded assuming this view was loaded in an iframe
 if (self != top) {

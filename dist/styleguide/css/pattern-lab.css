@@ -819,6 +819,49 @@ aside .pl-c-nav .pl-c-nav__list .pl-c-nav__item .pl-c-nav__subsublist .pl-c-nav_
   min-height: calc(100vh - 40px);
   margin-bottom: 0;
 }
+.pl-c-pattern .pl-c-pattern__title {
+  position: relative;
+}
+.pl-c-pattern .pl-c-pattern__title .pl-c-pattern-shareLink {
+  color: #ccc !important;
+  font-size: 18px !important;
+  height: 18px;
+  display: none;
+}
+.pl-c-pattern .pl-c-pattern__title .pl-c-pattern-shareLink:hover {
+  color: #000 !important;
+}
+.pl-c-pattern .pl-c-pattern__title .pl-c-pattern-shareLink:active, .pl-c-pattern .pl-c-pattern__title .pl-c-pattern-shareLink.active {
+  color: #28a745 !important;
+  display: inline-block;
+}
+.pl-c-pattern .pl-c-pattern__title:hover .pl-c-pattern-shareLink {
+  display: inline-block;
+}
+.pl-c-pattern .pl-c-pattern__codeSection .content {
+  position: relative;
+}
+.pl-c-pattern .pl-c-pattern__codeSection .content .pl-c-pattern__codeClipboard {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  color: #ccc !important;
+  font-size: 18px !important;
+  display: none;
+}
+.pl-c-pattern .pl-c-pattern__codeSection .content .pl-c-pattern__codeClipboard:hover {
+  color: #000 !important;
+}
+.pl-c-pattern .pl-c-pattern__codeSection .content .pl-c-pattern__codeClipboard:active, .pl-c-pattern .pl-c-pattern__codeSection .content .pl-c-pattern__codeClipboard.active {
+  color: #28a745 !important;
+  display: block;
+}
+.pl-c-pattern .pl-c-pattern__codeSection .content:hover .pl-c-pattern__codeClipboard {
+  display: block;
+}
 
 /**
 * Pattern Header
